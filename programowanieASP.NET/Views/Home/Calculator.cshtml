@@ -1,0 +1,10 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Calculator";
+    Layout = "_Layout";
+    //Example of query: /Home/Calculator?op=Add&a=5&b=3
+} 
+<h1>@ViewBag.Title</h1>
+<h2>Result @ViewBag.A @ViewBag.Operator @ViewBag.B = @ViewBag.Result</h2>

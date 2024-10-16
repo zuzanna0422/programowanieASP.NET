@@ -16,6 +16,47 @@ namespace programowanieASP.NET.Controllers
         {
             return View();
         }
+        public IActionResult Calculator(Operator? op, double? a, double? b)
+        {
+            //Example of query: /Home/Calculator?op=Add&a=5&b=3
+            // var op = Request.Query["op"];
+            // var a = double.Parse( Request.Query["a"]);
+            // var b = double.Parse(Request.Query["b"]);
+            if (a is null || b is null)
+            {
+                ViewBag.ErrorMessage = "Invalid number format in parameter a or b!!!";
+                return View("CustomError");
+            }
+
+            if (op is null)
+            {
+                ViewBag.ErrorMessage = "Unknown operator!!!";
+                return View("CustomError");
+            }
+            ViewBag.A = a;
+            ViewBag.B = b;
+            switch (op)
+            {
+                case Operator.Add:
+                    ViewBag.Result = a + b;
+                    ViewBag.Operator = "+";
+                    break;
+                case Operator.Sub:
+                    ViewBag.Result = a - b;
+                    ViewBag.Operator = "-";
+                    break;
+                case Operator.Div:
+                    ViewBag.Result = a / b;
+                    ViewBag.Operator = "/";
+                    break;
+                case Operator.Mul:
+                    ViewBag.Result = a * b;
+                    ViewBag.Operator = "*";
+                    break;
+            }
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -31,5 +72,9 @@ namespace programowanieASP.NET.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+    }
+    public enum Operator
+    {
+        Add, Sub, Div, Mul,
     }
 }
