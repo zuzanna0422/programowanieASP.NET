@@ -1,0 +1,52 @@
+﻿@model programowanieASP.NET.Models.TravelModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Travel";
+}
+<form asp-action="Create" asp-controller="Travel" method="post">
+    <div class="form-group">
+        <label asp-for="Nazwa" class="control-label">Nazwa</label>
+        <input asp-for="Nazwa" class="form-control" />
+        <span asp-validation-for="Nazwa" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataRozpoczecia" class="control-label">Data rozpoczęcia</label>
+        <input asp-for="DataRozpoczecia" class="form-control" />
+        <span asp-validation-for="DataRozpoczecia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataZakonczenia" class="control-label">Data zakończenia</label>
+        <input asp-for="DataZakonczenia" class="form-control" />
+        <span asp-validation-for="DataZakonczenia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MiejscePoczatkowe" class="control-label">Miejsce początkowe</label>
+        <input asp-for="MiejscePoczatkowe" class="form-control" />
+        <span asp-validation-for="MiejscePoczatkowe" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MiejsceKoncowe" class="control-label">Miejsce końcowe</label>
+        <input asp-for="MiejsceKoncowe" class="form-control" />
+        <span asp-validation-for="MiejsceKoncowe" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Uczestnicy" class="control-label">Uczestnicy</label>
+        <input asp-for="Uczestnicy" class="form-control" />
+        <span asp-validation-for="Uczestnicy" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Przewodnik" class="control-label">Przewodnik</label>
+        <input asp-for="Przewodnik" class="form-control" />
+        <span asp-validation-for="Przewodnik" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+</form>

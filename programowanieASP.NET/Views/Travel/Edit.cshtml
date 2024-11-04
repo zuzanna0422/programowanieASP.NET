@@ -1,0 +1,37 @@
+﻿@model programowanieASP.NET.Models.TravelModel
+
+<h2>Edycja podróży</h2>
+<form asp-action="Edit" asp-controller="Travel" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Nazwa">Nazwa podróży</label>
+        <input type="text" class="form-control" asp-for="Nazwa" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DataRozpoczecia">Data rozpoczęcia</label>
+        <input type="date" class="form-control" asp-for="DataRozpoczecia" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DataZakonczenia">Data zakończenia</label>
+        <input type="date" class="form-control" asp-for="DataZakonczenia" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MiejscePoczatkowe">Miejsce początkowe</label>
+        <input type="text" class="form-control" asp-for="MiejscePoczatkowe" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MiejsceKoncowe">Miejsce końcowe</label>
+        <input type="text" class="form-control" asp-for="MiejsceKoncowe" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Uczestnicy">Uczestnicy (rozdziel przecinkami)</label>
+        <input type="text" class="form-control" asp-for="Uczestnicy" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Przewodnik">Przewodnik</label>
+        <input type="text" class="form-control" asp-for="Przewodnik" />
+    </div>
+    <button type="submit" class="btn btn-success">Zapisz zmiany</button>
+    <a class="btn btn-secondary" asp-action="Index">Anuluj</a>
+</form>
+

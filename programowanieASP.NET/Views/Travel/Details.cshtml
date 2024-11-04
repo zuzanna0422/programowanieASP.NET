@@ -1,0 +1,27 @@
+﻿@model programowanieASP.NET.Models.TravelModel
+
+<h2>Szczegóły podróży</h2>
+<div>
+    <strong>Nazwa podróży:</strong> @Model.Nazwa
+</div>
+<div>
+    <strong>Data rozpoczęcia:</strong> @Model.DataRozpoczecia.ToString("yyyy-MM-dd")
+</div>
+<div>
+    <strong>Data zakończenia:</strong> @Model.DataZakonczenia.ToString("yyyy-MM-dd")
+</div>
+<div>
+    <strong>Miejsce początkowe:</strong> @Model.MiejscePoczatkowe
+</div>
+<div>
+    <strong>Miejsce końcowe:</strong> @Model.MiejsceKoncowe
+</div>
+<div>
+    <strong>Uczestnicy:</strong> @string.Join(", ", Model.Uczestnicy)
+</div>
+<div>
+    <strong>Przewodnik:</strong> @Model.Przewodnik
+</div>
+
+<a class="btn btn-primary" asp-action="Index">Powrót</a>
+
