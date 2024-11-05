@@ -10,6 +10,7 @@ namespace programowanieASP.NET.Models
     {
         [HiddenInput]
         public int Id { get; set; }
+        public Priority Priority { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwę!")]
         public string Nazwa { get; set; }

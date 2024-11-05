@@ -1,4 +1,5 @@
-﻿@model programowanieASP.NET.Models.TravelModel
+﻿@using programowanieASP.NET.Models
+@model programowanieASP.NET.Models.TravelModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -46,6 +47,13 @@
         <label asp-for="Przewodnik" class="control-label">Przewodnik</label>
         <input asp-for="Przewodnik" class="form-control" />
         <span asp-validation-for="Przewodnik" class="text-danger"></span>
+    </div>
+    <div>
+     <label asp-for="Priority">Kategoria</label>
+     <div>
+         <span asp-validation-for="Priority" class="text-danger"></span>
+     </div>
+     <select class="form-control" asp-for="Priority" asp-items="@Html.GetEnumSelectList<Priority>()"></select>
     </div>
 
     <button type="submit" class="btn btn-primary">Zapisz</button>
