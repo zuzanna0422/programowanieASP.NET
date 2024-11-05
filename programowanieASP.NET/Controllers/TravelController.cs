@@ -29,6 +29,11 @@ namespace programowanieASP.NET.Controllers
         [HttpPost]
         public IActionResult Create(TravelModel travel)
         {
+
+            if (travel.Uczestnicy == null)
+            {
+                travel.Uczestnicy = new List<string>();
+            }
             if (ModelState.IsValid)
             {
                 int id = _travel.Keys.Count != 0 ? _travel.Keys.Max() : 0;
@@ -56,6 +61,10 @@ namespace programowanieASP.NET.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (travel.Uczestnicy == null)
+                {
+                    travel.Uczestnicy = new List<string>();
+                }
                 _travel[travel.Id] = travel;
                 return RedirectToAction("Index");
             }
