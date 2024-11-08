@@ -11,7 +11,7 @@ namespace programowanieASP.NET.Controllers
 
         public IActionResult Index()
         {
-            return View(_travel);
+            return View(_travel.Values.ToList());
         }
 
         [HttpGet]
