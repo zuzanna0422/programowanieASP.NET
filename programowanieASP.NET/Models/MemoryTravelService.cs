@@ -21,11 +21,19 @@
         }
         public TravelModel? FindById(int id)
         {
-            return _items[id];
+            _items.TryGetValue(id, out var travel);
+            return travel;
         }
-        public void Update(TravelModel item )
+        public void Update(TravelModel item)
         {
-            _items[item.Id] = item;
+            if (_items.ContainsKey(item.Id))
+            {
+                _items[item.Id] = item;
+            }
+            else
+            {
+                throw new KeyNotFoundException("Travel item with specified ID not found.");
+            }
         }
     }
 }

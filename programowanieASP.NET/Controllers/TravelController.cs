@@ -7,11 +7,16 @@ namespace programowanieASP.NET.Controllers
 {
     public class TravelController : Controller
     {
-        static Dictionary<int, TravelModel> _travel = new Dictionary<int, TravelModel>();
+        private readonly ITravelService _travelService;
+        //static Dictionary<int, TravelModel> _travel = new Dictionary<int, TravelModel>();
+        public TravelController(ITravelService travelService)
+        {
+            _travelService = travelService ?? throw new ArgumentNullException(nameof(travelService));
+        }
 
         public IActionResult Index()
         {
-            return View(_travel.Values.ToList());
+            return View(_travelService.FindAll());
         }
 
         [HttpGet]
@@ -36,10 +41,9 @@ namespace programowanieASP.NET.Controllers
             }
             if (ModelState.IsValid)
             {
-                int id = _travel.Keys.Count != 0 ? _travel.Keys.Max() : 0;
-                travel.Id = id + 1;
-                _travel.Add(travel.Id, travel);
-
+                _travelService.Add(travel);
+                //int id = _travel.Keys.Count != 0 ? _travel.Keys.Max() : 0;
+                //travel.Id = id + 1;
                 return RedirectToAction("Index");
 
             }
@@ -51,8 +55,9 @@ namespace programowanieASP.NET.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            if (_travel.ContainsKey(id))
-                return View(_travel[id]);
+            var travel = _travelService.FindById(id);
+            if (travel != null)
+                return View(travel);
             return NotFound();
         }
 
@@ -65,7 +70,7 @@ namespace programowanieASP.NET.Controllers
                 {
                     travel.Uczestnicy = new List<string>();
                 }
-                _travel[travel.Id] = travel;
+                _travelService.Update(travel);
                 return RedirectToAction("Index");
             }
             return View(travel);
@@ -74,24 +79,27 @@ namespace programowanieASP.NET.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            if (_travel.ContainsKey(id))
-                return View(_travel[id]);
+            var travel = _travelService.FindById(id);
+            if (travel != null)
+                return View(travel);
             return NotFound();
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            if (_travel.ContainsKey(id))
-                return View(_travel[id]);
+            var travel = _travelService.FindById(id);
+            if (travel != null)
+                return View(travel);
             return NotFound();
         }
 
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {
-            if (_travel.ContainsKey(id))
-                _travel.Remove(id);
+            var travel = _travelService.FindById(id);
+            if (travel != null)
+                _travelService.Delete(id);
             return RedirectToAction("Index");
         }
     }

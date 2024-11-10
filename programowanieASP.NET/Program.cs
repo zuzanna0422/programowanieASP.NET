@@ -1,15 +1,19 @@
+using programowanieASP.NET.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Dodanie serwisów do kontenera DI.
 builder.Services.AddControllersWithViews();
+
+// Rejestracja serwisu ITravelService i jego implementacji TravelService
+builder.Services.AddSingleton<ITravelService, MemoryTravelService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Konfiguracja potoku obs³ugi ¿¹dañ HTTP.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
