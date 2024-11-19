@@ -1,7 +1,10 @@
 using programowanieASP.NET.Models;
+using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<Data.AppDbContext>();
+builder.Services.AddTransient<ITravelService, EFTravelService>();
 // Dodanie serwisów do kontenera DI.
 builder.Services.AddControllersWithViews();
 
