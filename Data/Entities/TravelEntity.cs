@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using programowanieASP.NET.Models;
 
 namespace Data.Entities
 {
@@ -17,8 +16,6 @@ namespace Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]  
         public int Id { get; set; }
 
-        [Required]
-        public Priority Priority { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwę!")]
         [MaxLength(100, ErrorMessage = "Nazwa nie może mieć więcej niż 100 znaków.")]
