@@ -241,8 +241,7 @@ public partial class MoviesContext : DbContext
         modelBuilder.Entity<MovieCompany>(entity =>
         {
             entity
-                .HasNoKey()
-                .ToTable("movie_company");
+                .HasKey(e => new { e.MovieId, e.CompanyId });
 
             entity.Property(e => e.CompanyId)
                 .HasDefaultValueSql("NULL")
