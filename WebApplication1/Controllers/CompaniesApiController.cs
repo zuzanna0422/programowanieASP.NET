@@ -25,4 +25,5 @@ public class CompaniesApiController : Controller
             .AsEnumerable()
         );
     }
+    
 }
