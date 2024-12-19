@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Controllers;
 using WebApplication1.Models.Movies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseMiddleware<LastVisitCookie>();
 app.UseAuthorization();
 
 app.MapControllerRoute(
