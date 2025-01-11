@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<WebApplicationVideoGames.Models.Games.GamesContext>(options =>
+    options.UseSqlite("Data source=C:\\data\\videogames.db"));
 
 var app = builder.Build();
 

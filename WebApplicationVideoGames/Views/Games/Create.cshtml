@@ -1,0 +1,29 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model WebApplicationVideoGames.Models.Games.Game
+
+<h2>Dodaj Gre:</h2>
+
+<form method="post">
+    <label for="GenreId">Typ gry:</label>
+    <select id="GenreId">
+        <option value="">Wybierz gatunek</option>
+        @foreach (var genre in ViewBag.Genres)
+        {
+            <option value="@genre.Id">@genre.GenreName</option>
+        }
+    </select>
+    
+    <label>Nazwa gry:</label>
+    <input asp-for="GameName"/>
+    <span asp-validation-for="GameName"></span>
+    
+    <label for="PublisherId">Wydawca gry:</label>
+    <select id="PublisherId">
+        <option value="">Wybierz wydawce</option>
+        @foreach (var publisher in ViewBag.Publishers)
+        {
+            <option value="@publisher.Id">@publisher.PublisherName</option>
+        }
+    </select>
+    <button type="submit">Dodaj</button>
+</form>

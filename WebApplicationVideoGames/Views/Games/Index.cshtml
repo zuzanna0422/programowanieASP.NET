@@ -1,0 +1,28 @@
+@model IEnumerable<WebApplicationVideoGames.Models.Games.Game>
+<h2>Lista gier:</h2>
+<a href="/Games/Create">Dodaj grę</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>genre</th>
+        <th>game_name</th>
+        <th>publisher_name</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td>@game.Genre?.GenreName</td>
+                <td>@game.GameName</td>
+                <td>
+                    @foreach (var publisher in game.GamePublishers)
+                    {
+                        <a href="/Publishers/Edit/@publisher.PublisherId">@publisher.Publisher.PublisherName</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
