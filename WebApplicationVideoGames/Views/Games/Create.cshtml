@@ -1,32 +1,40 @@
 @using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model WebApplicationVideoGames.Models.ViewModels.GameCreateViewModel
 
-<h2>Dodaj Gre:</h2>
+<h2 style="margin-bottom: 20px">Dodaj Gre:</h2>
 
-<form method="post">
-    <label for="GenreId">Typ gry:</label>
-    <select asp-for="GenreId" name="GenreId" class="form-control">
-        <option value="">Wybierz gatunek</option>
-        @foreach (var genre in ViewBag.Genres)
-        {
-            <option value="@genre.Id">@genre.GenreName</option>
-        }
-    </select>
-    <span asp-validation-for="GenreId"></span>
+<form method="post" style="border: 1px solid black; padding: 18px">
+    <label for="GenreId" style="margin-bottom: 5px">Typ gry:</label>
+    <div class="container-fluid">
+        <select asp-for="GenreId" name="GenreId" class="form-control">
+            <option value="">Wybierz gatunek</option>
+            @foreach (var genre in ViewBag.Genres)
+            {
+                <option value="@genre.Id">@genre.GenreName</option>
+            }
+        </select>
+        <span asp-validation-for="GenreId"></span>
+    </div>
+    <br/>
     
-    <label>Nazwa gry:</label>
-    <input asp-for="GameName"/>
-    <span asp-validation-for="GameName"></span>
-
-    <label for="SelectedPublisher">Wydawca gry:</label>
-    <select asp-for="SelectedPublisher" name="SelectedPublisher" class="form-control">
-        <option value="">Wybierz wydawcę</option>
-        @foreach (var publisher in ViewBag.Publishers)
-        {
-            <option value="@publisher.Id">@publisher.PublisherName</option>
-        }
-    </select>
-    <span asp-validation-for="SelectedPublisher"></span>
-
-    <button type="submit">Dodaj</button>
+    <div style="margin-bottom: 20px">
+    <label class="col-sm-2 control-label">Nazwa gry:</label>
+        <input style="border: 1px solid gray;" asp-for="GameName"/>
+        <span asp-validation-for="GameName"></span>
+    </div>
+    
+    <label for="SelectedPublisher" style="margin-bottom: 5px">Wydawca gry:</label>
+    <div class="container-fluid">
+        <select asp-for="SelectedPublisher" name="SelectedPublisher" class="form-control">
+            <option value="">Wybierz wydawcę</option>
+            @foreach (var publisher in ViewBag.Publishers)
+            {
+                <option value="@publisher.Id">@publisher.PublisherName</option>
+            }
+        </select>
+        <span style="font-style: italic;" asp-validation-for="SelectedPublisher"></span>
+    </div>
+    <br/>
+    
+    <button type="submit" class="btn btn-primary" >Dodaj</button>
 </form>
