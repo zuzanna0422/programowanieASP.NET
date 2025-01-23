@@ -14,7 +14,7 @@ namespace Data.Entities
         public string Regon { get; set; }
         public string Nip { get; set; }
         public Address? Address { get; set; }
-        public ISet<ContactEntity> Contacts { get; set; }
+        public ISet<TravelEntity> Contacts { get; set; }
 
     }
     public class Address
