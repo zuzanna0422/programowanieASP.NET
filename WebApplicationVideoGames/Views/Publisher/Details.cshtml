@@ -1,0 +1,37 @@
+@model WebApplicationVideoGames.Models.ViewModels.ViewModel.PublisherDetailsViewModel
+
+<h2>@Model.PublisherName</h2>
+
+@if (Model.Games != null)
+{
+    foreach (var game in Model.Games)
+    {
+        <h3>@game.GameName</h3>
+        <ul>
+            @if (game.Platforms != null)
+            {
+                foreach (var platform in game.Platforms)
+                {
+                    <li>
+                        <strong>Platform:</strong> @platform.PlatformName
+                        <br/>
+                        <strong>Release Year:</strong> @platform.ReleaseYear
+                        <ul>
+                            @if (platform.SalesByRegion != null)
+                            {
+                                foreach (var region in platform.SalesByRegion)
+                                {
+                                    <li>
+                                        <strong>Region:</strong> @region.RegionName
+                                        <br/>
+                                        <strong>Sales:</strong> @region.NumSales
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+        </ul>
+    }
+}
