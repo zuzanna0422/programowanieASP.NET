@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using WebApplicationVideoGames.Models;
 using WebApplicationVideoGames.Models.Games;
+using WebApplicationVideoGames.Models.ViewModels;
 
 namespace WebApplicationVideoGames.Controllers;
 
@@ -30,27 +31,37 @@ public class GamesController : Controller
     {
         ViewBag.Genres = _context.Genres.ToList();
         ViewBag.Publishers = _context.Publishers.ToList();
-        return View();
+        return View(new GameCreateViewModel());
     }
 
     [HttpPost]
-    public IActionResult Create(Game game, List<int> selectedPublisher)
+    public IActionResult Create(Game game, GameCreateViewModel model)
     {
         if (ModelState.IsValid)
         {
+                int newId = _context.Games.Max(g => g.Id) + 1;
+
+                game.Id = newId;
+                var selectedPublisher = model.SelectedPublisher;
+                
                 _context.Games.Add(game);
                 _context.SaveChanges();
-                foreach (var publisherId in selectedPublisher)
+                if (model.SelectedPublisher > 0)
                 {
+                    
+                    int idGamePublisher = _context.GamePublishers.Max(p => p.Id) + 1;
+                    Publisher publisher = _context.Publishers.Where(p => p.Id == model.SelectedPublisher).First();
                     var gamePublisher = new GamePublisher
                     {
-                        GameId = game.Id,
-                        PublisherId = publisherId
+                        Id = idGamePublisher,
+                        Game = game,
+                        Publisher = publisher
                     };
+
                     _context.GamePublishers.Add(gamePublisher);
-
+                    _context.SaveChanges();
                 }
-
+                _context.SaveChanges();
                 return RedirectToAction("Index");
         }
         else

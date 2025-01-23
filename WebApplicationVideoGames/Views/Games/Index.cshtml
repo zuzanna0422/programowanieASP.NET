@@ -19,7 +19,9 @@
                 <td>
                     @foreach (var publisher in game.GamePublishers)
                     {
-                        <a href="/Publishers/Edit/@publisher.PublisherId">@publisher.Publisher.PublisherName</a>
+                        <a href="@Url.Action("Details", "Publisher", new { id = publisher.PublisherId })">
+                            @publisher.Publisher?.PublisherName
+                        </a><br />
                     }
                 </td>
             </tr>
